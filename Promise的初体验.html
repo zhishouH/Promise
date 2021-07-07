@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise的初体验</title>
+  <style>
+    button {
+      padding: 8px 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Promise的初体验</h1>
+  <hr>
+  <button>点击抽奖</button>
+
+  <script>
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', () => {
+
+      // 定时器
+      // setTimeout(() => {
+      //   let n = Math.round(Math.random() * 100)
+      //   console.log(n)
+      //   if (n <= 30) {
+      //     alert('恭喜你中奖了！')
+      //   } else {
+      //     alert('很遗憾，再接再厉！')
+      //   }
+      // }, 1000)
+
+      // Promise 形式实现
+      // resolve 解决
+      // reject 拒绝
+      const p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          let n = Math.round(Math.random() * 100)
+          console.log(n)
+          if (n <= 30) {
+            resolve()  // 将promise对象的状态设置为【成功】
+          } else {
+            reject()  // 将promise对象的状态设置为【失败】
+          }
+        }, 1000)
+      })
+      // 调用then方法
+      p.then(() => {
+        alert('恭喜你中奖了！')
+      }, () => {
+        alert('很遗憾，再接再厉！')
+      })
+    })
+  </script>
+</body>
+
+</html>
